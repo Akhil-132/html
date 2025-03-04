@@ -1,0 +1,19 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - echo "Install Apache2 on the EC2 instance (if not installed)"
+      # This step assumes Apache is already installed on the EC2 instance
+      # If needed, install Apache:
+      - sudo apt-get update
+      - sudo apt-get install -y apache2
+  build:
+    commands:
+      - echo "No build steps required for static site."
+      - echo "Deploying HTML files to Apache's root directory..."
+      # Assuming the source code (HTML) is under the 'dist' folder
+      # or the root directory in your repository
+      - sudo cp -r * /var/www/html/
+artifacts:
+  files:
+    - '**/*'
